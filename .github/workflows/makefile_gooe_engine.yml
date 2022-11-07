@@ -1,0 +1,37 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "goo-blender-master" ]
+  pull_request:
+    branches: [ "goo-blender-master" ]
+
+jobs:
+  build:
+    name: Build Gooe_Blender
+    runs-on: ubuntu-latest
+    container: node:14
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check Node Version
+      run: node --version
+    
+    - name: configure
+      run: ./configure
+      
+    - name: install requirements
+      run: pip install -r requirements.txt
+    
+    - name: Check addons
+      run: git submodule update --init --recursive
+      
+      
+    - name: Install dependencies
+      run: make
+      
+    - name: Run check
+      run: make check
+      
+    - name: Run build1
+      run: make build1
