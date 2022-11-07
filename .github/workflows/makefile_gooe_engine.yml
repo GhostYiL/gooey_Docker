@@ -16,17 +16,13 @@ jobs:
     
     - name: Check Node Version
       run: node --version
-    
-    - name: configure
-      run: ./configure
       
     - name: install requirements
       run: pip install -r requirements.txt
     
     - name: Check addons
       run: git submodule update --init --recursive
-      
-      
+            
     - name: Install dependencies
       run: make
       
