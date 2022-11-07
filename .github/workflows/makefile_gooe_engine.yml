@@ -13,17 +13,15 @@ jobs:
     container: node:14
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v1
-    
-
-    
-    - name: Install Python dependencies
-      uses: py-actions/py-dependency-install@v4
-    
+    - uses: actions/setup-python@v2
+      with:
+          python-version: "3.6"
+          
+    - name: Set up testing environment
+      run: pip install -r goo-blender-master/requirements.txt
+      
     - name: Check Node Version
       run: node --version
-      
-   
     
     - name: Check addons
       run: git submodule update --init --recursive
