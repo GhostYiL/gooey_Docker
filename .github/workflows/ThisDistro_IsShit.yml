@@ -25,7 +25,9 @@ jobs:
 
     - name: Scripts
       run: |
+        sudo apt-get build-dep  blender
         sudo apt-get install python3-dev
+        sudo apt-get install libpython3-dev libpython3.4-dev
         sudo apt install numactl
         sudo apt install -y libzstd-dev
         sudo apt install build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libegl-dev
@@ -38,5 +40,5 @@ jobs:
       run: make update 
                    
     - name: Make
-      run: make 
+      run: cmake -DPYTHON_LIBRARY=/usr/bin/python3.4m -DPYTHON_INCLUDE_DIR=/usr/include/python3.4m .. 
       
