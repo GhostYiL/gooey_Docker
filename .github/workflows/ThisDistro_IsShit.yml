@@ -62,5 +62,5 @@ jobs:
    #   run: cmake --version
                    
     - name: Make
-      run: cmake CMakeLists.txt
+      run: cmake "/home/runner/work/gooey_Docker/gooey_Docker/C/CMakeLists.txt"
       
