@@ -21,7 +21,9 @@ jobs:
     - run: pip install -r requirements.txt
     
     - name: Update Sudo
-      run: sudo apt update
+      run: |
+        sudo apt update
+        sudo apt-get upgrade 
 
     - name: Scripts
       run: |
@@ -40,5 +42,5 @@ jobs:
     #  run: make update 
                    
     - name: Make
-      run: make -s -DPYTHON_LIBRARY=/usr/bin/python3.4m -DPYTHON_INCLUDE_DIR=/usr/include/python3.4m .. 
+      run: make  
       
