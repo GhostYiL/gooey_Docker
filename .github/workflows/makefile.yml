@@ -13,9 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: configure
-      run: ./configure
+    - name: Set up Python 
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9' 
+        cache: 'pip' # caching pip dependencies
+        
+    - run: pip install -r requirements.txt
+      
       
     - name: Install dependencies
       run: make
@@ -25,3 +30,32 @@ jobs:
       
     - name: Run distcheck
       run: make distcheck
+      
+    - name: Python Dependency Installation
+      uses: py-actions/py-dependency-install@v4.0.0
+      with:
+        path: "path/to/requirements.txt"
+        
+    - name: Install Flake
+      run: |
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        
+    - name: Check addons
+      run: git submodule update --init --recursive
+            
+    - name: Make
+      run: make update
+      
+    - name: Check
+      run: make check
+      
+    - name: BuilD
+      run: make BuilD
