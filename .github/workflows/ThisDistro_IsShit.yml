@@ -43,6 +43,9 @@ jobs:
       
     - name: Check
       run: make check
-                         
-    - name: BuilD
-      run: make BuilD
+                    
+    - name: Make
+      run: make
+      
+    #- name: BuilD
+    #  run: make BuilD
