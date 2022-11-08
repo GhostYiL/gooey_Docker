@@ -26,18 +26,11 @@ jobs:
       run: |
         sudo apt install -y libzstd-dev
         sudo apt install numactl
-	
-	sudo apt update
+				sudo apt update
 
-	sudo apt install build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libegl-dev
-	sudo apt install libwayland-dev wayland-protocols libxkbcommon-dev libdbus-1-dev linux-libc-dev
 
-	
     - name: Install Requirements.txt   
-      run: pip install -r requirements.txt
-        
-   # - name: Update Sudo
-   #   run: sudo apt update
+      run: pip install -r requirements.txt     
       
     - name: Update
       run: make update 
