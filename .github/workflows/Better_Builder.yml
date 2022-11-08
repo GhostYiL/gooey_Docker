@@ -40,14 +40,14 @@ jobs:
     - name: Submodule Update
       run: git submodule update --init --recursive #update sub modules
 
+    - name: Make
+      run: make
+      
     - name: Update
       run: make update #update source code, add-ons up to date etc.
 
     - name: Tests
       run: make test #run test before build
-
-    - name: Make
-      run: make
       
     - name: Check
       run: make check
