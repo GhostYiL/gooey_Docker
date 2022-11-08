@@ -49,7 +49,8 @@ jobs:
       #  svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/linux_centos7_x86_64
 
     - name: Submodule
-      run: git submodule update --init --recursive #update sub modules
+     # run: git submodule update --init --recursive #update sub modules
+      run: git clone https://github.com/dillongoostudios/goo-engine.git --recursive
 
     - name: Update
       run: make update 
