@@ -1,0 +1,59 @@
+name: Make
+
+on:
+  push:
+    branches: [ "goo-blender-master" ]
+  pull_request:
+    branches: [ "goo-blender-master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9' 
+        cache: 'pip' # caching pip dependencies
+        
+    - name: Install Requirements.txt   
+      run: pip install -r requirements.txt
+
+    - name: Update Sudo
+      run: sudo apt update
+
+    - name: Numact1 (idk maybe important)
+      run: sudo apt install numactl
+
+    - name: Install ZSTD_LIBRARY
+      run: sudo apt install -y libzstd-dev
+
+    - name: Install Essentials p_1
+      run: sudo apt install build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libegl-dev
+
+    - name: Install Essentials p_2
+      run: sudo apt install libwayland-dev wayland-protocols libxkbcommon-dev libdbus-1-dev linux-libc-dev
+
+    - name: Submodule Update
+      run: git submodule update --init --recursive #update sub modules
+
+    - name: Update
+      run: make update #update source code, add-ons up to date etc.
+
+    - name: Tests
+      run: make test #run test before build
+
+    - name: Make
+      run: make
+      
+    - name: Check
+      run: make check
+      
+    - name: Distcheck
+      run: make distcheck
+                         
+    - name: BuilD
+      run: make BuilD
