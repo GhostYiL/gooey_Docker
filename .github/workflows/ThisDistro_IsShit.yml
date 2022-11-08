@@ -36,9 +36,9 @@ jobs:
     - name: Submodule
       run: git submodule update --init --recursive 
 
-    - name: Update
-      run: make update 
+    #- name: Update
+    #  run: make update 
                    
     - name: Make
-      run: cmake -DPYTHON_LIBRARY=/usr/bin/python3.4m -DPYTHON_INCLUDE_DIR=/usr/include/python3.4m .. 
+      run: make -s -DPYTHON_LIBRARY=/usr/bin/python3.4m -DPYTHON_INCLUDE_DIR=/usr/include/python3.4m .. 
       
