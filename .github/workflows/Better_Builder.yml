@@ -21,6 +21,9 @@ jobs:
         
     - name: Install Requirements.txt   
       run: pip install -r requirements.txt
+
+    - name: Install ZSTD_LIBRARY
+      run: sudo apt install -y libzstd-dev
       
     - name: Submodule Update
       run: git submodule update --init --recursive
@@ -37,5 +40,5 @@ jobs:
     - name: Run distcheck
       run: make distcheck
                          
-    - name: BuilD
-      run: make BuilD
+    - name: Build
+      run: make Build
