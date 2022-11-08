@@ -20,7 +20,7 @@ jobs:
         cache: 'pip' # caching pip dependencies
         
     - name: Dev_0.3Python
-      run: apt-get install python3-dev
+      run: sudo apt-get install python3.9-dev
         
     - name: Install Requirements.txt   
       run: pip install -r requirements.txt
