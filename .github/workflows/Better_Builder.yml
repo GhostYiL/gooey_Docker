@@ -1,0 +1,41 @@
+name: Make
+
+on:
+  push:
+    branches: [ "goo-blender-master" ]
+  pull_request:
+    branches: [ "goo-blender-master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9' 
+        cache: 'pip' # caching pip dependencies
+        
+    - name: Install Requirements.txt   
+      run: pip install -r requirements.txt
+      
+    - name: Submodule Update
+      run: git submodule update --init --recursive
+
+    - name: Make Update
+      run: make update
+
+    - name: Run Make
+      run: make
+      
+    - name: Run check
+      run: make check
+      
+    - name: Run distcheck
+      run: make distcheck
+                         
+    - name: BuilD
+      run: make BuilD
