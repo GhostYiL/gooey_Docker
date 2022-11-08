@@ -38,11 +38,11 @@ jobs:
     - name: Submodule
       run: git submodule update --init --recursive #update sub modules
 
-    - name: Update_Code
+    - name: Update
       run: make update 
       
-    - name: Check
-      run: make check
+  #  - name: Check
+  #    run: make check
                     
     - name: Make
       run: make
