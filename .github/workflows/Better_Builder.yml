@@ -16,30 +16,27 @@ jobs:
     - name: Set up Python 
       uses: actions/setup-python@v3
       with:
-        python-version: '3.9' 
+        python-version: '3.10' 
         cache: 'pip' # caching pip dependencies
         
     - name: Python3.9-dev
       run: sudo apt-get install python3-dev python3-pip python3-tk python3-lxml python3-six
-        
-    - name: Install Requirements.txt   
-      run: pip install -r requirements.txt
 
-    - name: Update Sudo
-      run: sudo apt update
-
-    - name: Install ZSTD_&_Numatic
+    - name: Essentials
       run: |
         sudo apt install -y libzstd-dev
         sudo apt install numactl
-
-    - name: Install Essentials
-      run: |
         sudo apt install build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libegl-dev
         sudo apt install libwayland-dev wayland-protocols libxkbcommon-dev libdbus-1-dev linux-libc-dev
+        
+    - name: Install Requirements.txt   
+      run: pip install -r requirements.txt
+        
+    - name: Update Sudo
+      run: sudo apt update
 
-    - name: Submodule Update
-      run: git submodule update --init --recursive # update sub modules
+   #///////////- name: Submodule Update
+   #///////////  run: git submodule update --init --recursive # update sub modules
       
     - name: Update
       run: make update # update source code, add-ons up to date etc.
@@ -47,8 +44,8 @@ jobs:
     - name: Make
       run: make
 
-    - name: Tests
-      run: make test #run test before build
+   #//////////// - name: Tests
+   #////////////   run: make test #run test before build
       
     #/////////////////////////// - name: Check
     #/////////////////////////// run: make check
