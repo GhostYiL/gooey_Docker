@@ -40,12 +40,14 @@ jobs:
 
     - name: Update
       run: make update 
+ #//                  
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.13
+      with:
+        cmake-version: '3.16.x'
+    - name: Use cmake
+      run: cmake --version
+                   
+  # - name: Make
+  #   run: make
       
-  #  - name: Check
-  #    run: make check
-                    
-    - name: Make
-      run: make
-      
-    #- name: BuilD
-    #  run: make BuilD
